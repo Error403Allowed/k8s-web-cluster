@@ -1,0 +1,23 @@
+services:
+  proxy:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - web1
+      - web2
+      - web3
+
+  web1:
+    build: ./web
+    hostname: web1
+
+  web2:
+    build: ./web
+    hostname: web2
+
+  web3:
+    build: ./web
+    hostname: web3
